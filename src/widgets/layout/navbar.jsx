@@ -68,7 +68,6 @@ export function Navbar({ brandName, routes, action }) {
             {brandName}
           </Typography>
         </Link>
-        <div className="hidden lg:block">{navList}</div>
         <div className="hidden gap-2 lg:flex">
           {React.cloneElement(action, {
             className: "hidden lg:inline-block",
@@ -96,14 +95,11 @@ export function Navbar({ brandName, routes, action }) {
 Navbar.defaultProps = {
   brandName: "RK Balloons",
   action: (
-    <a
-      href=""
-      target="_blank"
-    >
+    <Link to="/admin">
       <Button variant="gradient" size="sm" fullWidth>
         Admin
       </Button>
-    </a>
+    </Link>
   ),
 };
 

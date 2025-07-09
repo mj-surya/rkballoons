@@ -79,9 +79,9 @@ export function Footer({ title, description, socials, menus, copyright }) {
 }
 
 Footer.defaultProps = {
-  title: "Material Tailwind",
+  title: "R K Balloons",
   description:
-    "Easy to use React components for Tailwind CSS and Material Design.",
+    "Lets add magic to your special vacation",
   socials: [
     {
       color: "gray",
@@ -142,19 +142,19 @@ Footer.defaultProps = {
       ],
     },
   ],
-  copyright: (
-    <>
-      Copyright © {year} Material Tailwind by{" "}
-      <a
-        href="https://www.creative-tim.com?ref=mtk"
-        target="_blank"
-        className="text-blue-gray-500 transition-colors hover:text-blue-500"
-      >
-        Creative Tim
-      </a>
-      .
-    </>
-  ),
+  // copyright: (
+  //   <>
+  //     Copyright © {year} Material Tailwind by{" "}
+  //     <a
+  //       href="https://www.creative-tim.com?ref=mtk"
+  //       target="_blank"
+  //       className="text-blue-gray-500 transition-colors hover:text-blue-500"
+  //     >
+  //       Creative Tim
+  //     </a>
+  //     .
+  //   </>
+  // ),
 };
 
 Footer.propTypes = {

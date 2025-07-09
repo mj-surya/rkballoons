@@ -8,7 +8,7 @@ function App() {
 
   return (
     <>
-      {!(pathname == '/sign-in' || pathname == '/sign-up') && (
+      {!(pathname == '/sign-in' || pathname == '/sign-up' || pathname =="/admin") && (
         <div className="container absolute left-2/4 z-10 mx-auto -translate-x-2/4 p-4">
           <Navbar routes={routes} />
         </div>
@@ -20,6 +20,7 @@ function App() {
             element && <Route key={key} exact path={path} element={element} />
         )}
         <Route path="*" element={<Navigate to="/home" replace />} />
+        <Route path="/admin" element={<Navigate to="/admin" replace />} />
       </Routes>
     </>
   );
