@@ -95,7 +95,7 @@ export default function AdminDashboard() {
   );
 
   try {
-    const response = await fetch("https://rkback.onrender.com/update-status", {
+    const response = await fetch("https://rkbackrailway-production.up.railway.app/update-status", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
