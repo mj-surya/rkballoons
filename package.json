@@ -5,11 +5,10 @@
   "version": "2.1.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "npx vite build",
-    "preview": "vite preview",
-    "deploy": "gh-pages -d dist"
-  },
+  "build": "vite build",
+  "dev": "vite",
+  "preview": "vite preview"
+},
   "dependencies": {
     "@heroicons/react": "2.0.18",
     "@material-tailwind/react": "2.1.4",
