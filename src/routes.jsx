@@ -1,4 +1,5 @@
 import { Home, Profile } from "@/pages";
+import SheetView from "./pages/SheetView";
 
 export const routes = [
   {
@@ -10,6 +11,11 @@ export const routes = [
     name: "profile",
     path: "/profile",
     element: <Profile />,
+  },
+  {
+    name: "admin",
+    path: "/admin",
+    element: <SheetView />,
   },
   {
     name: "Docs",
