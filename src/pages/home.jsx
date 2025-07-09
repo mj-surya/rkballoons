@@ -955,7 +955,7 @@ export function Home() {
     e.preventDefault();
     setLoading(true);
     setSuccess(false);
-    const formId = "YOUR_FORM_ID_HERE";
+    const formId = "https://docs.google.com/forms/u/0/d/e/1FAIpQLSdXibg963QMRoctFOJZ3VAqxeBEXxMS6Zn0NmD_dxw5KZae2g/formResponse";
     const formDataGoogle = new FormData();
     formDataGoogle.append("entry.2043925985", formData.name);
     formDataGoogle.append("entry.1900205694", formData.email);

@@ -62,12 +62,19 @@ export default function AdminDashboard() {
   useEffect(() => {
     if (authenticated) {
       setLoading(true);
-      setTimeout(() => {
-        setData(sampleData);
-        setLoading(false);
-      }, 1000);
+      fetch("https://script.google.com/macros/s/AKfycbxq_G9QHiB2l40tS5zspn00aEyzO6fP0Wg-0zaGm8gdfnCTVUzg-c2I3RA5zSwg6Va_/exec")
+        .then((res) => res.json())
+        .then((result) => {
+          setData(result.data || []); // Ensure fallback to [] if result is malformed
+          setLoading(false);
+        })
+        .catch((err) => {
+          console.error("Failed to fetch data from Google Sheet:", err);
+          setLoading(false);
+        });
     }
   }, [authenticated]);
+
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -79,13 +86,39 @@ export default function AdminDashboard() {
     }
   };
 
-  const updateStatus = (id, newStatus) => {
-    setData(prevData =>
-      prevData.map(item =>
-        item.id === id ? { ...item, status: newStatus } : item
-      )
-    );
-  };
+  const updateStatus = async (id, newStatus) => {
+  const item = data.find(item => item.id === id);
+  if (!item?.email) return;
+
+  setData(prev =>
+    prev.map(i => (i.id === id ? { ...i, status: newStatus } : i))
+  );
+
+  try {
+    const response = await fetch("https://rkback.onrender.com/update-status", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: item.email,
+        status: newStatus,
+        id: item.id,
+      }),
+    });
+
+    const result = await response.json();
+
+    if (result.error) {
+      console.error("Update failed:", result.error);
+    }
+  } catch (err) {
+    console.error("Error updating status:", err);
+  }
+};
+
+
+
 
   const filteredData = data.filter(item =>
     item.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -105,13 +138,13 @@ export default function AdminDashboard() {
             </Typography>
             <Typography variant="lead">Admin Dashboard Login</Typography>
           </div>
-          
+
           {error && (
             <div className="mb-4 p-3 bg-red-50 rounded-lg text-red-700">
               {error}
             </div>
           )}
-          
+
           <form onSubmit={handleLogin}>
             <div className="mb-6">
               <Input
@@ -226,7 +259,7 @@ export default function AdminDashboard() {
                   </div>
 
                   <Typography className="mb-2">
-                    <strong>Date:</strong> {item.date}
+                    <strong>Date:</strong> {item.timestamp}
                   </Typography>
                   <Typography className="mb-2">
                     <strong>Phone:</strong> {item.phone}
